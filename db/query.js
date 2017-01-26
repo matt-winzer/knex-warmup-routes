@@ -19,8 +19,37 @@ function createUser(user) {
   });
 }
 
+function getAllExercises() {
+  return knex('exercise');
+}
+
+function createExercise(req) {
+  return knex('exercise').insert({
+    type: req.type,
+    duration: req.duration,
+    user_id: req.user_id
+  });
+}
+
+function getExerciseById(id) {
+  return knex('exercise').where('id', id);
+}
+
+function editExercise(id, req) {
+  return knex('exercise').where('id', id).update(req);
+}
+
+function deleteExercise(id) {
+  return knex('exercise').where('id', id).del();
+}
+
 module.exports = {
   getAllUsers,
   getUserByEmail,
-  createUser
+  createUser,
+  getAllExercises,
+  createExercise,
+  getExerciseById,
+  editExercise,
+  deleteExercise
 };
